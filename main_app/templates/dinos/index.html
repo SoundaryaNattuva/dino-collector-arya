@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/dinos/dino-index.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>Dino List</h1>
+  {% for dino in dinos %}
+    <div class="card">
+      <a href="{% url 'dino-detail' dino.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img
+              src="https://i.imgur.com/PnJ7IhE.png"
+            >
+          </div>
+        <h2 class="card-title">{{ dino.name }}</h2>
+        {% if dino.age > 0 %}
+          <p>A {{ dino.age }} year old {{ dino.dinosaurType }}</p>          
+        {% else %}
+          <p>A {{ dino.breed }} baby.</p>
+        {% endif %}
+          <p><small>{{dino.diet }}</small></p>
+        </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

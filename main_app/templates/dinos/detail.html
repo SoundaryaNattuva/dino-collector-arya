@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+  <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="{% static 'css/cats/cat-detail.css' %}"
+  />
+{% endblock %}
+
+{% block content %}
+
+<section class="cat-container">
+  <div class="cat-img">
+    <img 
+      src="" 
+      alt="A Dino Baby"
+    >
+  </div>
+  <div class="dino-details">
+    <h1>{{ dino.name }}</h1>
+    {% if dino.age > 0 %}
+      <h2>A {{ dino.age }} year old {{ dino.dinosaurType }}</h2>
+    {% else %}
+      <h2>A {{ dino.dinosaurType }} baby.</h2>
+    {% endif %}
+    <p>{{ dino.description }}</p>
+  </div>
+</section>
+
+{% endblock%}
