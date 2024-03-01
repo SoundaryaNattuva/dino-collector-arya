@@ -7,6 +7,21 @@
     type="text/css" 
     href="{% static 'css/cats/cat-detail.css' %}"
   />
+  <link 
+  href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" 
+  rel="stylesheet" 
+/>
+<link rel="stylesheet" href="{% static 'css/mcdp.css' %}">
+<script 
+  src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js"
+>
+</script>
+<link 
+  rel="stylesheet" 
+  type="text/css" 
+  href="{% static 'css/cats/cat-detail.css' %}"
+/>
+<script defer src="{% static 'js/dino-detail.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -28,5 +43,49 @@
     <p>{{ dino.description }}</p>
   </div>
 </section>
-
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Vaccines</h2>
+      insert images
+    </div>
+      <h3>Add a Vaccine</h3>
+      <form
+        action="{% url 'add-vaccine' dino.id %}"
+        method="post" 
+        class="subsection-content"
+        autocomplete="off"
+      >
+        {% csrf_token %}
+        {{ vaccine_form.as_p }}
+        {% if dino.vaccine_for_today %}
+          <p class="fed">{{dino.name}} has maxed out her vaccine administration today!</p>
+        {% else %}
+          <p class="unfed">{{dino.name}} has less than two vaccines administered today</p>
+        {% endif %}
+        {{ feeding_form.as_p }}
+        <button type="submit" class="btn submit">Administer Vaccine</button>
+      </form>
+    <h3>Past Vaccines</h3>
+    {% if dino.vaccine_set.all.count %}
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Vaccine</th></tr>
+      </thead>
+      <tbody>
+        {% for vaccine in dino.vaccine_set.all %}
+          <tr>
+            <td>{{vaccine.date}}</td>
+            <td>{{vaccine.get_shot_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <div class="subsection-content">
+        <p>{{dino.name}} has not had their vaccines yet</p>
+      </div>
+    {% endif %}
+  </section>
+</div>
 {% endblock%}

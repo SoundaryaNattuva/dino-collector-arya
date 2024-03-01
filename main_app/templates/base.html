@@ -15,10 +15,10 @@
   <header>
     <div class="header-logo-container">
       <a href="/">
-        <img 
+        {% comment %} <img 
           src="https://i.imgur.com/PnJ7IhE.png"
           alt="Dino Collector Logo"
-        >
+        > {% endcomment %}
       </a>
     </div>
     <nav>
@@ -26,6 +26,8 @@
         <li><a href="/">Home</a></li>
         <li><a href="{% url 'about' %}">About</a></li>
         <li><a href="{% url 'dino-index' %}">All Dinos</a></li>
+        <li><a href="{% url 'dino-create' %}">Add Dino</a></li>
+        <li><a href="{% url 'milestone-create' %}">Create Milestone</a></li>
       </ul>
     </nav>
   </header>
