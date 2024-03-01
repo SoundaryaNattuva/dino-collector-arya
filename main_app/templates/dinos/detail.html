@@ -93,12 +93,10 @@
     </div>
     <h3>{{ milestone.name }}</h3>
     <div class="subsection-content">
-      {% if dino.milestone.count %}
-        {% for milestone in dino.milestone.all %}
+      {% if dino.milestones.count %}
+        {% for milestone in dino.milestones.all %}
           <div class="toy-container">
-            <div 
-              class="color-block"
-            ></div>
+            <div class="color-block"></div>
             <a href="{% url 'milestone-detail' milestone.id %}">
               <p>{{ milestone.description }}</p>
             </a>

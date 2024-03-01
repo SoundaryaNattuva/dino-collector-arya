@@ -53,3 +53,8 @@ class MilestoneUpdate(UpdateView):
 class MilestoneDelete(DeleteView):
   model = Milestone
   success_url = '/milestones/'
+
+def assoc_milestone(request, dino_id, milestone_id):
+  # Note that you can pass a milestone's id instead of the whole object
+  Dino.objects.get(id=dino_id).milestones.add(milestone_id)
+  return redirect('dino-detail', dino_id=dino_id)

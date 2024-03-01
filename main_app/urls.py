@@ -13,7 +13,7 @@ urlpatterns = [
   path('milestones/', views.MilestoneList.as_view(), name='milestone-index'),
   path('milestones/<int:pk>/update', views.MilestoneUpdate.as_view(), name='milestone-update'),
   path('milestones/<int:pk>/delete', views.MilestoneDelete.as_view(), name='milestone-delete'),
-  path('dinos/<int:dino_id>/add-milestone/', views.add_milestone, name='add-milestone'),
+  # path('dinos/<int:dino_id>/add-milestone/', views.add_milestone, name='add-milestone'),
   # associate a toy with a dino (M:M)
   path('dinos/<int:dino_id>/assoc-milestone/<int:milestone_id>/', views.assoc_milestone, name='assoc-milestone'),
 ]
