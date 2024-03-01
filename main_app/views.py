@@ -17,9 +17,10 @@ def dino_index(request):
 
 def dino_detail(request, dino_id):
   dino = Dino.objects.get(id=dino_id)
+  milestones_dino_doesnt_have = Milestone.objects.exclude(id__in = dino.milestones.all().values_list('id'))
   vaccine_form = VaccineForm()
   return render(request, 'dinos/detail.html', { 
-    'dino' : dino, 'vaccine_form': vaccine_form
+    'dino' : dino, 'vaccine_form': vaccine_form, 'milestones': milestones_dino_doesnt_have
     })
 
 class DinoCreate(CreateView):
