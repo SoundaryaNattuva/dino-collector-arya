@@ -11,6 +11,8 @@ urlpatterns = [
   path('milestones/create', views.MilestoneCreate.as_view(), name='milestone-create'),
   path('milestones/<int:pk>/', views.MilestoneDetail.as_view(), name='milestone-detail'),
   path('milestones/', views.MilestoneList.as_view(), name='milestone-index'),
+  path('milestones/<int:pk>/update', views.MilestoneUpdate.as_view(), name='milestone-update'),
+  path('milestones/<int:pk>/delete', views.MilestoneDelete.as_view(), name='milestone-delete'),
 ]
 
 

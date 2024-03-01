@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from .models import Dino, Milestone
 from .forms import VaccineForm
 
@@ -23,7 +24,7 @@ def dino_detail(request, dino_id):
 
 class DinoCreate(CreateView):
   model = Dino
-  fields = '__all__'
+  fields = ['name', 'dinosaurType', 'age', 'diet', 'length', 'height']
   success_url = '/dinos/index'
 
 def add_vaccine(request, dino_id):
@@ -37,3 +38,17 @@ def add_vaccine(request, dino_id):
 class MilestoneCreate(CreateView):
   model = Milestone
   fields = '__all__'
+
+class MilestoneList(ListView):
+  model = Milestone
+
+class MilestoneDetail(DetailView):
+  model = Milestone
+
+class MilestoneUpdate(UpdateView):
+  model = Milestone
+  fields = ['name', 'description']
+
+class MilestoneDelete(DeleteView):
+  model = Milestone
+  success_url = '/milestones/'

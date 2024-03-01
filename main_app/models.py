@@ -11,6 +11,16 @@ SHOTS = (
   ('M', 'Measles'),
 )
 
+class Milestone(models.Model):
+  name = models.CharField(max_length=50)
+  description = models.CharField(max_length=250, default='')
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('milestone-detail', kwargs={'pk': self.id})
+
 # Create your models here.
 class Dino(models.Model):
   name = models.CharField(max_length=100)
@@ -19,6 +29,7 @@ class Dino(models.Model):
   diet = models.CharField(max_length=100)
   length = models.DecimalField(max_digits=5, decimal_places=2)
   height = models.DecimalField(max_digits=5, decimal_places=2)
+  milestones = models.ManyToManyField(Milestone)
 
   def __str__(self):
     return self.name
@@ -44,13 +55,3 @@ class Vaccine(models.Model):
   
   class Meta: 
     ordering = ['-date']
-
-# Add the Toy model
-class Milestone(models.Model):
-  name = models.CharField(max_length=50)
-
-  def __str__(self):
-    return self.name
-
-  def get_absolute_url(self):
-    return reverse('milsetone-detail', kwargs={'pk': self.id})
