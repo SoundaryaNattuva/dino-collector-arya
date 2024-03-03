@@ -19,7 +19,7 @@
 <link 
   rel="stylesheet" 
   type="text/css" 
-  href="{% static 'css/cats/cat-detail.css' %}"
+  href="{% static 'css/dinos/dino-detail.css' %}"
 />
 <script defer src="{% static 'js/dino-detail.js' %}"></script>
 {% endblock %}
@@ -27,12 +27,7 @@
 {% block content %}
 
 <section class="cat-container">
-  <div class="cat-img">
-    <img 
-      src="" 
-      alt="A Dino Baby"
-    >
-  </div>
+  <div class="cat-img"></div>
   <div class="dino-details">
     <h1>{{ dino.name }}</h1>
     {% if dino.age > 0 %}
@@ -41,13 +36,16 @@
       <h2>A {{ dino.dinosaurType }} baby.</h2>
     {% endif %}
     <p>{{ dino.description }}</p>
+    <div class="cat-actions">
+      <a href="{% url 'dino-update' dino.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'dino-delete' dino.id %}" class="btn danger">Set Free</a>
+    </div>
   </div>
 </section>
 <div class="feedings-toy-container">
   <section class="feedings">
     <div class="subsection-title">
       <h2>Vaccines</h2>
-      insert images
     </div>
       <h3>Add a Vaccine</h3>
       <form

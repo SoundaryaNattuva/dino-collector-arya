@@ -14,21 +14,21 @@
 <body>
   <header>
     <div class="header-logo-container">
-      <a href="/">
-        {% comment %} <img 
-          src="https://i.imgur.com/PnJ7IhE.png"
-          alt="Dino Collector Logo"
-        > {% endcomment %}
-      </a>
+      <a href="/"></a>
     </div>
     <nav>
       <ul>
+        {% if user.is_authenticated %}
         <li><a href="/">Home</a></li>
-        <li><a href="{% url 'about' %}">About</a></li>
         <li><a href="{% url 'dino-index' %}">All Dinos</a></li>
         <li><a href="{% url 'dino-create' %}">Add Dino</a></li>
         <li><a href="{% url 'milestone-create' %}">Create Milestone</a></li>
         <li><a href="{% url 'milestone-index' %}">All Milestones</a></li>
+        {% else %}
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'home' %}">Login</a></li>
+        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>
